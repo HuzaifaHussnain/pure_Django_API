@@ -15,9 +15,11 @@ Including another URLconf
 """
 from django.contrib import admin
 from django.urls import path
-from updates.views import update_model_detail_view
+from updates.views import update_model_detail_view, json_data_update
+
 urlpatterns = [
     path('admin/', admin.site.urls),
-    path('', update_model_detail_view, name = None)
+    path('', update_model_detail_view, name = None),
+    path('json_data_update', json_data_update, name = None)
 
 ]
