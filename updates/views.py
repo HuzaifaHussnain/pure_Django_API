@@ -1,8 +1,11 @@
 import json
 from django.http import JsonResponse, HttpResponse
 from django.shortcuts import render
+from django.core.serializers import serialize
+from django.views.generic import View
 
 from .models import Update
+
 # Create your views here.
 
 def update_model_detail_view(request):
@@ -19,3 +22,9 @@ def json_data_update(request):
 	}
 	json_data = json.dumps(data)
 	return HttpResponse(json_data, content_type='application/json')
+
+class SerializedListView(View):
+	def get(self, request, *args, **kwargs):
+		query_set = Update.objects.all()
+		json_data = serialize("json", query_set, fields=('user', 'content'))
+		return HttpResponse(json_data, content_type='application/json')
