@@ -25,6 +25,5 @@ def json_data_update(request):
 
 class SerializedListView(View):
 	def get(self, request, *args, **kwargs):
-		query_set = Update.objects.all()
-		json_data = serialize("json", query_set, fields=('user', 'content'))
+		json_data = Update.objects.all().serialize()
 		return HttpResponse(json_data, content_type='application/json')
