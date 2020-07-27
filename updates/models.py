@@ -27,10 +27,9 @@ class Update(models.Model):
 	objects = UpdateManager()
 
 	def serialize(self):
-		print("in serialize")
-		data={
+		data = {
 			'user': self.user.id,
 			'content': self.content
 		}
-		return serialize("json", data)
+		return json.dumps(data)
  
