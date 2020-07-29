@@ -23,6 +23,7 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('', update_model_detail_view, name = None),
     path('json_data_update', json_data_update, name = None),
-    path('serialized_list_view', SerializedListView.as_view(), name=None)
+    path('serialized_list_view', SerializedListView.as_view(), name=None),
+    path('api/status/', include('status.api.urls'))
 
 ]
